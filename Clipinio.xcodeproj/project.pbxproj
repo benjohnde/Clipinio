@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B24BE201AFBC3B400FA78D2 /* CMPopupMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B24BE1F1AFBC3B400FA78D2 /* CMPopupMenu.swift */; };
+		4B6181331AFBE7F900F43233 /* CMPasteboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6181321AFBE7F900F43233 /* CMPasteboardObserver.swift */; };
+		4B6181361AFBF0AE00F43233 /* CMClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6181351AFBF0AE00F43233 /* CMClip.swift */; };
+		4B93874D1AF95B6000489506 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B93874C1AF95B6000489506 /* Images.xcassets */; };
+		4B93875C1AF95B6000489506 /* ClipinioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93875B1AF95B6000489506 /* ClipinioTests.swift */; };
+		4BF9E8551AFA44410070931F /* CMAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9E8521AFA44410070931F /* CMAppDelegate.swift */; };
+		4BF9E8561AFA44410070931F /* CMHotkeyInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9E8531AFA44410070931F /* CMHotkeyInterceptor.swift */; };
+		4BF9E8571AFA44410070931F /* CMPasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9E8541AFA44410070931F /* CMPasteboard.swift */; };
+		4BF9E8601AFA446C0070931F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BF9E85E1AFA446C0070931F /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4B9387561AF95B6000489506 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B93873B1AF95B6000489506 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B9387421AF95B6000489506;
+			remoteInfo = Clipinio;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4B24BE1F1AFBC3B400FA78D2 /* CMPopupMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMPopupMenu.swift; sourceTree = "<group>"; };
+		4B6181321AFBE7F900F43233 /* CMPasteboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMPasteboardObserver.swift; sourceTree = "<group>"; };
+		4B6181351AFBF0AE00F43233 /* CMClip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMClip.swift; sourceTree = "<group>"; };
+		4B9387431AF95B6000489506 /* Clipinio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clipinio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B9387471AF95B6000489506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B93874C1AF95B6000489506 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4B9387551AF95B6000489506 /* ClipinioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClipinioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B93875A1AF95B6000489506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B93875B1AF95B6000489506 /* ClipinioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipinioTests.swift; sourceTree = "<group>"; };
+		4BF9E8521AFA44410070931F /* CMAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMAppDelegate.swift; sourceTree = "<group>"; };
+		4BF9E8531AFA44410070931F /* CMHotkeyInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMHotkeyInterceptor.swift; sourceTree = "<group>"; };
+		4BF9E8541AFA44410070931F /* CMPasteboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMPasteboard.swift; sourceTree = "<group>"; };
+		4BF9E85E1AFA446C0070931F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B9387401AF95B6000489506 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B9387521AF95B6000489506 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B6181341AFBEA1D00F43233 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B6181351AFBF0AE00F43233 /* CMClip.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4B93873A1AF95B6000489506 = {
+			isa = PBXGroup;
+			children = (
+				4B9387451AF95B6000489506 /* Clipinio */,
+				4B9387581AF95B6000489506 /* ClipinioTests */,
+				4B9387441AF95B6000489506 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B9387441AF95B6000489506 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B9387431AF95B6000489506 /* Clipinio.app */,
+				4B9387551AF95B6000489506 /* ClipinioTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B9387451AF95B6000489506 /* Clipinio */ = {
+			isa = PBXGroup;
+			children = (
+				4BF9E8511AFA44360070931F /* Classes */,
+				4B93874C1AF95B6000489506 /* Images.xcassets */,
+				4B9387461AF95B6000489506 /* Supporting Files */,
+			);
+			path = Clipinio;
+			sourceTree = "<group>";
+		};
+		4B9387461AF95B6000489506 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B9387471AF95B6000489506 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4B9387581AF95B6000489506 /* ClipinioTests */ = {
+			isa = PBXGroup;
+			children = (
+				4B93875B1AF95B6000489506 /* ClipinioTests.swift */,
+				4B9387591AF95B6000489506 /* Supporting Files */,
+			);
+			path = ClipinioTests;
+			sourceTree = "<group>";
+		};
+		4B9387591AF95B6000489506 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B93875A1AF95B6000489506 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BF9E8511AFA44360070931F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4B6181341AFBEA1D00F43233 /* Model */,
+				4BF9E85C1AFA44640070931F /* Views */,
+				4BF9E8521AFA44410070931F /* CMAppDelegate.swift */,
+				4BF9E8531AFA44410070931F /* CMHotkeyInterceptor.swift */,
+				4BF9E8541AFA44410070931F /* CMPasteboard.swift */,
+				4B6181321AFBE7F900F43233 /* CMPasteboardObserver.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		4BF9E85C1AFA44640070931F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B24BE1F1AFBC3B400FA78D2 /* CMPopupMenu.swift */,
+				4BF9E85E1AFA446C0070931F /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B9387421AF95B6000489506 /* Clipinio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B93875F1AF95B6000489506 /* Build configuration list for PBXNativeTarget "Clipinio" */;
+			buildPhases = (
+				4B93873F1AF95B6000489506 /* Sources */,
+				4B9387401AF95B6000489506 /* Frameworks */,
+				4B9387411AF95B6000489506 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clipinio;
+			productName = Clipinio;
+			productReference = 4B9387431AF95B6000489506 /* Clipinio.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4B9387541AF95B6000489506 /* ClipinioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B9387621AF95B6000489506 /* Build configuration list for PBXNativeTarget "ClipinioTests" */;
+			buildPhases = (
+				4B9387511AF95B6000489506 /* Sources */,
+				4B9387521AF95B6000489506 /* Frameworks */,
+				4B9387531AF95B6000489506 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4B9387571AF95B6000489506 /* PBXTargetDependency */,
+			);
+			name = ClipinioTests;
+			productName = ClipinioTests;
+			productReference = 4B9387551AF95B6000489506 /* ClipinioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B93873B1AF95B6000489506 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Ben John";
+				TargetAttributes = {
+					4B9387421AF95B6000489506 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					4B9387541AF95B6000489506 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 4B9387421AF95B6000489506;
+					};
+				};
+			};
+			buildConfigurationList = 4B93873E1AF95B6000489506 /* Build configuration list for PBXProject "Clipinio" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4B93873A1AF95B6000489506;
+			productRefGroup = 4B9387441AF95B6000489506 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B9387421AF95B6000489506 /* Clipinio */,
+				4B9387541AF95B6000489506 /* ClipinioTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B9387411AF95B6000489506 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BF9E8601AFA446C0070931F /* Main.storyboard in Resources */,
+				4B93874D1AF95B6000489506 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B9387531AF95B6000489506 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B93873F1AF95B6000489506 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BF9E8571AFA44410070931F /* CMPasteboard.swift in Sources */,
+				4B24BE201AFBC3B400FA78D2 /* CMPopupMenu.swift in Sources */,
+				4BF9E8561AFA44410070931F /* CMHotkeyInterceptor.swift in Sources */,
+				4BF9E8551AFA44410070931F /* CMAppDelegate.swift in Sources */,
+				4B6181331AFBE7F900F43233 /* CMPasteboardObserver.swift in Sources */,
+				4B6181361AFBF0AE00F43233 /* CMClip.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B9387511AF95B6000489506 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B93875C1AF95B6000489506 /* ClipinioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4B9387571AF95B6000489506 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B9387421AF95B6000489506 /* Clipinio */;
+			targetProxy = 4B9387561AF95B6000489506 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4B93875D1AF95B6000489506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4B93875E1AF95B6000489506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		4B9387601AF95B6000489506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Clipinio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4B9387611AF95B6000489506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Clipinio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4B9387631AF95B6000489506 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ClipinioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clipinio.app/Contents/MacOS/Clipinio";
+			};
+			name = Debug;
+		};
+		4B9387641AF95B6000489506 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ClipinioTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clipinio.app/Contents/MacOS/Clipinio";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B93873E1AF95B6000489506 /* Build configuration list for PBXProject "Clipinio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B93875D1AF95B6000489506 /* Debug */,
+				4B93875E1AF95B6000489506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B93875F1AF95B6000489506 /* Build configuration list for PBXNativeTarget "Clipinio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B9387601AF95B6000489506 /* Debug */,
+				4B9387611AF95B6000489506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B9387621AF95B6000489506 /* Build configuration list for PBXNativeTarget "ClipinioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B9387631AF95B6000489506 /* Debug */,
+				4B9387641AF95B6000489506 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B93873B1AF95B6000489506 /* Project object */;
+}
