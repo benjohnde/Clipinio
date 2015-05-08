@@ -8,14 +8,14 @@
 
 import Cocoa
 
-protocol CMHotkeyInterceptorProtocol {
+protocol CMHotkeyInterceptorDelegate {
     func showPasteMenu(event: NSEvent)
 }
 
 class CMHotkeyInterceptor: NSObject {
-    let delegate: CMHotkeyInterceptorProtocol
+    let delegate: CMHotkeyInterceptorDelegate
     
-    init(delegate: CMHotkeyInterceptorProtocol) {
+    init(delegate: CMHotkeyInterceptorDelegate) {
         self.delegate = delegate
         super.init()
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: handlerEvent)

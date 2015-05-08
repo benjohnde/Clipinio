@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class CMPasteboard: NSObject, CMPasteboardObserverProtocol {
+class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     let CMPasteboardSize = 10
     let pasteboard = NSPasteboard.generalPasteboard()
     var clips = [CMClip]()
@@ -26,6 +26,12 @@ class CMPasteboard: NSObject, CMPasteboardObserverProtocol {
         return nil
     }
     
+    func clear() {
+        while clips.count > 1 {
+            clips.removeLast()
+        }
+    }
+    
     func addClip(clip: CMClip) -> Bool {
         if !contains(clip) {
             if clips.count + 1 > CMPasteboardSize {
@@ -34,7 +40,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverProtocol {
             clips.insert(clip, atIndex: 0)
             return true
         }
-        toTop(clip)
+        moveToTop(clip)
         return false
     }
     
@@ -47,7 +53,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverProtocol {
         return nil
     }
     
-    func toTop(clip: CMClip) {
+    func moveToTop(clip: CMClip) {
         var index = indexOf(clip)!
         clips.removeAtIndex(index)
         clips.insert(clip, atIndex: 0)
@@ -72,7 +78,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverProtocol {
         key?.executeAndReturnError(nil)
     }
     
-    // MARK: - CMPasteboardObserverProtocol
+    // MARK: - CMPasteboardObserverDelegate
     func updatePasteboard() {
         var topClip = top()
         if topClip != nil {

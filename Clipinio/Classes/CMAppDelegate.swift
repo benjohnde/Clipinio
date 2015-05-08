@@ -9,42 +9,15 @@
 import Cocoa
 
 @NSApplicationMain
-class CMAppDelegate: NSObject, NSApplicationDelegate, CMHotkeyInterceptorProtocol, CMPopupMenuProtocol {
+class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyInterceptorDelegate, CMPopupMenuDelegate, CMClipsMenuDelegate {
+    // NSVariableStatusItemLength
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let pasteboard = CMPasteboard()
+    var _clipsMenu: CMClipsMenu?
     
-    // MARK: - NSApplicationDelegate
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         acquirePrivileges()
         initializeClipinio()
-    }
-    
-    // MARK: - CMHotkeyInterceptorProtocol
-    func showPasteMenu(event: NSEvent) {
-        var menu = CMPopupMenu(delegate: self, clips: pasteboard.clips)
-        menu.showPopupMenu(event)
-    }
-    
-    // MARK: - CMPopupMenuProtocol
-    func selectedMenuItem(index: Int) {
-        pasteboard.prepareClipForPaste(index)
-        pasteboard.invokePasteCommand()
-    }
-    
-    // MARK: - Application Initialization
-    @IBOutlet weak var statusMenu: NSMenu!
-    
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
-    
-    func initializeClipinio() {
-        initializeStatusBar()
-        CMHotkeyInterceptor(delegate: self)
-    }
-    
-    func initializeStatusBar() {
-        let icon = NSImage(named: "statusIcon")!
-        icon.setTemplate(true)
-        statusItem.image = icon
-        statusItem.menu = statusMenu
     }
     
     func acquirePrivileges() {
@@ -53,5 +26,50 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, CMHotkeyInterceptorProtoco
         if (AXIsProcessTrustedWithOptions(options) == 0) {
             NSApplication.sharedApplication().terminate(nil)
         }
+    }
+    
+    func initializeClipinio() {
+        setupStatusBarItemMenu()
+        CMHotkeyInterceptor(delegate: self)
+        _clipsMenu = CMClipsMenu(delegate: self)
+    }
+    
+    func setupStatusBarItemMenu() {
+        let icon = NSImage(named: "statusIcon")!
+        icon.setTemplate(true)
+        statusItem.image = icon
+        statusItem.menu = statusMenu
+        
+    }
+    
+    @IBOutlet weak var statusMenu: NSMenu!
+    @IBOutlet weak var clipsMenu: NSMenu!
+    @IBOutlet weak var versionItem: NSMenuItem!
+    
+    @IBAction func resetEntries(sender: AnyObject) {
+        pasteboard.clear()
+    }
+    
+    func setupVersionItem() {
+        var version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        versionItem.title = "Version: " + version
+    }
+    
+    // MARK: - NSMenuDelegate
+    func menuWillOpen(menu: NSMenu) {
+        setupVersionItem()
+        _clipsMenu!.fill()
+    }
+    
+    // MARK: - CMHotkeyInterceptorDelegate
+    func showPasteMenu(event: NSEvent) {
+        var menu = CMPopupMenu(delegate: self, clips: pasteboard.clips)
+        menu.showPopupMenu(event)
+    }
+    
+    // MARK: - CMPopupMenuDelegate
+    func menuItemSelected(index: Int) {
+        pasteboard.prepareClipForPaste(index)
+        pasteboard.invokePasteCommand()
     }
 }

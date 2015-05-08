@@ -8,15 +8,15 @@
 
 import Cocoa
 
-protocol CMPasteboardObserverProtocol {
+protocol CMPasteboardObserverDelegate {
     func updatePasteboard()
 }
 
 class CMPasteboardObserver: NSObject {
     let CMTimeInterval = NSTimeInterval(0.75)
-    let delegate: CMPasteboardObserverProtocol
+    let delegate: CMPasteboardObserverDelegate
     
-    init(delegate: CMPasteboardObserverProtocol) {
+    init(delegate: CMPasteboardObserverDelegate) {
         self.delegate = delegate
         super.init()
         startObserving()

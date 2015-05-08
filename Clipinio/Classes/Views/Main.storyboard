@@ -8,12 +8,31 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                    <menu key="mainMenu" title="StatusMenu" systemMenu="main" id="AYu-sK-qS6" userLabel="StatusMenu">
                         <items>
                             <menuItem title="Clipinio" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Clipinio" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
+                                        <menuItem title="Clips" id="i90-hv-Ri4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Clips" id="Km3-KF-dJP">
+                                                <items>
+                                                    <menuItem title="Reset Entries" id="Bgx-QE-pQX">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="resetEntries:" target="Voe-Tx-rLC" id="Kie-KN-YUV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="MSA-OK-FHU"/>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="bkg-3M-SNG"/>
+                                        <menuItem title="Version: " enabled="NO" id="2la-Qf-ivN">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="bOp-Cz-bgP"/>
                                         <menuItem title="Quit" id="4sb-4s-VLi">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -21,6 +40,9 @@
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="delegate" destination="Voe-Tx-rLC" id="rvA-Aa-2Jx"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                         </items>
@@ -31,7 +53,9 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="CMAppDelegate" customModule="Clipinio" customModuleProvider="target">
                     <connections>
-                        <outlet property="statusMenu" destination="uQy-DD-JDr" id="ObS-VZ-Ptb"/>
+                        <outlet property="clipsMenu" destination="Km3-KF-dJP" id="gdd-XC-fyd"/>
+                        <outlet property="statusMenu" destination="uQy-DD-JDr" id="NnY-13-TgE"/>
+                        <outlet property="versionItem" destination="2la-Qf-ivN" id="5Nj-Zk-cuR"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

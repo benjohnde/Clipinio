@@ -8,15 +8,15 @@
 
 import Cocoa
 
-protocol CMPopupMenuProtocol {
-    func selectedMenuItem(index: Int)
+protocol CMPopupMenuDelegate {
+    func menuItemSelected(index: Int)
 }
 
 class CMPopupMenu: NSObject {
-    let delegate: CMPopupMenuProtocol
+    let delegate: CMPopupMenuDelegate
     let menu = NSMenu()
     
-    init(delegate: CMPopupMenuProtocol, clips: [CMClip]) {
+    init(delegate: CMPopupMenuDelegate, clips: [CMClip]) {
         self.delegate = delegate
         super.init()
         for (index, clip) in enumerate(clips) {
@@ -36,6 +36,6 @@ class CMPopupMenu: NSObject {
     
     func clickOnMenuItem(item: NSMenuItem) {
         var pos = menu.indexOfItem(item)
-        delegate.selectedMenuItem(pos)
+        delegate.menuItemSelected(pos)
     }
 }
