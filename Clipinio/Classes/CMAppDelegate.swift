@@ -39,7 +39,6 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
         icon.setTemplate(true)
         statusItem.image = icon
         statusItem.menu = statusMenu
-        
     }
     
     @IBOutlet weak var statusMenu: NSMenu!
