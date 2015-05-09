@@ -9,7 +9,7 @@
 import Cocoa
 
 class CMClip: NSObject {
-    let CMPreviewLength = 30
+    private let CMPreviewLength = 30
     
     var content = String()
     var preview: String {

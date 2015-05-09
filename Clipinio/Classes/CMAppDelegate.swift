@@ -11,9 +11,13 @@ import Cocoa
 @NSApplicationMain
 class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyInterceptorDelegate, CMPopupMenuDelegate, CMClipsMenuDelegate {
     // NSVariableStatusItemLength
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
+    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let pasteboard = CMPasteboard()
-    var _clipsMenu: CMClipsMenu?
+    var clipsMenu: CMClipsMenu?
+    
+    @IBOutlet weak var __statusMenu: NSMenu!
+    @IBOutlet weak var __clipsMenu: NSMenu!
+    @IBOutlet weak var __versionMenuItem: NSMenuItem!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         acquirePrivileges()
@@ -31,33 +35,29 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     func initializeClipinio() {
         setupStatusBarItemMenu()
         CMHotkeyInterceptor(delegate: self)
-        _clipsMenu = CMClipsMenu(delegate: self)
+        clipsMenu = CMClipsMenu(delegate: self)
     }
     
     func setupStatusBarItemMenu() {
         let icon = NSImage(named: "statusIcon")!
         icon.setTemplate(true)
         statusItem.image = icon
-        statusItem.menu = statusMenu
+        statusItem.menu = __statusMenu
     }
     
-    @IBOutlet weak var statusMenu: NSMenu!
-    @IBOutlet weak var clipsMenu: NSMenu!
-    @IBOutlet weak var versionItem: NSMenuItem!
-    
-    @IBAction func resetEntries(sender: AnyObject) {
+    @IBAction func __resetEntries(sender: AnyObject) {
         pasteboard.clear()
     }
     
-    func setupVersionItem() {
+    private func setupVersionItem() {
         var version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        versionItem.title = "Version: " + version
+        __versionMenuItem.title = "Version: " + version
     }
     
     // MARK: - NSMenuDelegate
     func menuWillOpen(menu: NSMenu) {
         setupVersionItem()
-        _clipsMenu!.fill()
+        clipsMenu!.fill()
     }
     
     // MARK: - CMHotkeyInterceptorDelegate

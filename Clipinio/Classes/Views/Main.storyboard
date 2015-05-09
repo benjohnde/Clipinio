@@ -21,7 +21,7 @@
                                                     <menuItem title="Reset Entries" id="Bgx-QE-pQX">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="resetEntries:" target="Voe-Tx-rLC" id="Kie-KN-YUV"/>
+                                                            <action selector="__resetEntries:" target="Voe-Tx-rLC" id="dMv-b3-cxP"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="MSA-OK-FHU"/>
@@ -53,9 +53,9 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="CMAppDelegate" customModule="Clipinio" customModuleProvider="target">
                     <connections>
-                        <outlet property="clipsMenu" destination="Km3-KF-dJP" id="gdd-XC-fyd"/>
-                        <outlet property="statusMenu" destination="uQy-DD-JDr" id="NnY-13-TgE"/>
-                        <outlet property="versionItem" destination="2la-Qf-ivN" id="5Nj-Zk-cuR"/>
+                        <outlet property="__clipsMenu" destination="Km3-KF-dJP" id="lS9-nd-43D"/>
+                        <outlet property="__statusMenu" destination="uQy-DD-JDr" id="9NL-rb-9WH"/>
+                        <outlet property="__versionMenuItem" destination="2la-Qf-ivN" id="gn1-NB-cIp"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

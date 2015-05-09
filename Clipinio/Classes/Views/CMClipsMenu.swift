@@ -9,12 +9,12 @@
 import Cocoa
 
 protocol CMClipsMenuDelegate {
-    var clipsMenu: NSMenu! { get }
     var pasteboard: CMPasteboard { get }
+    var __clipsMenu: NSMenu! { get }
 }
 
 class CMClipsMenu: NSObject {
-    let delegate: CMClipsMenuDelegate
+    private let delegate: CMClipsMenuDelegate
     
     init(delegate: CMClipsMenuDelegate) {
         self.delegate = delegate
@@ -25,13 +25,13 @@ class CMClipsMenu: NSObject {
         clear()
         for (index, clip) in enumerate(delegate.pasteboard.clips) {
             var title = String(index) + ". " + clip.preview
-            delegate.clipsMenu!.insertItemWithTitle(title, action: nil, keyEquivalent: "", atIndex: index + 2)
+            delegate.__clipsMenu!.insertItemWithTitle(title, action: nil, keyEquivalent: "", atIndex: index + 2)
         }
     }
     
     private func clear() {
-        while delegate.clipsMenu!.itemArray.count > 2 {
-            delegate.clipsMenu!.removeItemAtIndex(delegate.clipsMenu!.itemArray.count - 1)
+        while delegate.__clipsMenu!.itemArray.count > 2 {
+            delegate.__clipsMenu!.removeItemAtIndex(delegate.__clipsMenu!.itemArray.count - 1)
         }
     }
 }

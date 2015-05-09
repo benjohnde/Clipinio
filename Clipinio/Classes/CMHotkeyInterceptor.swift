@@ -13,7 +13,7 @@ protocol CMHotkeyInterceptorDelegate {
 }
 
 class CMHotkeyInterceptor: NSObject {
-    let delegate: CMHotkeyInterceptorDelegate
+    private let delegate: CMHotkeyInterceptorDelegate
     
     init(delegate: CMHotkeyInterceptorDelegate) {
         self.delegate = delegate
@@ -21,21 +21,21 @@ class CMHotkeyInterceptor: NSObject {
         NSEvent.addGlobalMonitorForEventsMatchingMask(NSEventMask.KeyDownMask, handler: handlerEvent)
     }
     
-    func handlerEvent(event: NSEvent!) {
+    private func handlerEvent(event: NSEvent!) {
         if (isPasteDetected(event)) {
             delegate.showPasteMenu(event)
         }
     }
     
-    func isShiftDetected(event: NSEvent) -> Bool {
+    private func isShiftDetected(event: NSEvent) -> Bool {
         return event.modifierFlags.rawValue & NSEventModifierFlags.ShiftKeyMask.rawValue != 0
     }
     
-    func isCommandDetected(event: NSEvent) -> Bool {
+    private func isCommandDetected(event: NSEvent) -> Bool {
         return event.modifierFlags.rawValue & NSEventModifierFlags.CommandKeyMask.rawValue != 0
     }
     
-    func isPasteDetected(event: NSEvent) -> Bool {
+    private func isPasteDetected(event: NSEvent) -> Bool {
         return isShiftDetected(event) && isCommandDetected(event) && event.characters?.lowercaseString == "v"
     }
 }

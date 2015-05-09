@@ -9,8 +9,8 @@
 import Cocoa
 
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
-    let CMPasteboardSize = 10
-    let pasteboard = NSPasteboard.generalPasteboard()
+    private let CMPasteboardSize = 10
+    private let pasteboard = NSPasteboard.generalPasteboard()
     var clips = [CMClip]()
     
     override init() {
@@ -18,10 +18,9 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         CMPasteboardObserver(delegate: self)
     }
     
-    func top() -> CMClip? {
-        let string = pasteboard.stringForType(NSPasteboardTypeString)
-        if (string != nil) {
-            return CMClip(content: string!)
+    private func top() -> CMClip? {
+        if let string = pasteboard.stringForType(NSPasteboardTypeString) {
+            return CMClip(content: string)
         }
         return nil
     }
@@ -32,8 +31,8 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         }
     }
     
-    func addClip(clip: CMClip) -> Bool {
-        if !contains(clip) {
+    private func addClip(clip: CMClip) -> Bool {
+        if !contains(clips, {$0.content == clip.content}) {
             if clips.count + 1 > CMPasteboardSize {
                 clips.removeLast()
             }
@@ -44,7 +43,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         return false
     }
     
-    func indexOf(clip: CMClip) -> Int? {
+    private func indexOf(clip: CMClip) -> Int? {
         for (index, c) in enumerate(clips) {
             if c.content == clip.content {
                 return index
@@ -53,19 +52,10 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         return nil
     }
     
-    func moveToTop(clip: CMClip) {
+    private func moveToTop(clip: CMClip) {
         var index = indexOf(clip)!
         clips.removeAtIndex(index)
         clips.insert(clip, atIndex: 0)
-    }
-    
-    func contains(clip: CMClip) -> Bool {
-        for c in clips {
-            if c.content == clip.content {
-                return true
-            }
-        }
-        return false
     }
     
     func prepareClipForPaste(index: Int) {
@@ -80,9 +70,8 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     
     // MARK: - CMPasteboardObserverDelegate
     func updatePasteboard() {
-        var topClip = top()
-        if topClip != nil {
-            addClip(topClip!)
+        if let top = top() {
+            addClip(top)
         }
     }
 }
