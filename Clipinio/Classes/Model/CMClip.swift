@@ -14,7 +14,7 @@ class CMClip: NSObject {
     var content = String()
     var preview: String {
         get {
-            if count(self.content) > CMPreviewLength {
+            if self.content.characters.count > CMPreviewLength {
                 return NSString(string: self.content).substringToIndex(CMPreviewLength) as String
             } else {
                 return self.content

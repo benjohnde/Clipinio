@@ -19,14 +19,14 @@ class CMPopupMenu: NSObject {
     init(delegate: CMPopupMenuDelegate, clips: [CMClip]) {
         self.delegate = delegate
         super.init()
-        for (index, clip) in enumerate(clips) {
+        for (index, clip) in clips.enumerate() {
             addItemToMenu(index, clip: clip)
         }
     }
     
     private func addItemToMenu(position: Int, clip: CMClip) {
-        var title = String(position) + ". " + clip.preview
-        var item = menu.insertItemWithTitle(title, action: Selector("clickOnMenuItem:"), keyEquivalent: String(position), atIndex: position)
+        let title = String(position) + ". " + clip.preview
+        let item = menu.insertItemWithTitle(title, action: Selector("clickOnMenuItem:"), keyEquivalent: String(position), atIndex: position)
         item?.target = self
     }
     
@@ -35,7 +35,7 @@ class CMPopupMenu: NSObject {
     }
     
     func clickOnMenuItem(item: NSMenuItem) {
-        var pos = menu.indexOfItem(item)
+        let pos = menu.indexOfItem(item)
         delegate.menuItemSelected(pos)
     }
 }

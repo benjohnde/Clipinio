@@ -12,6 +12,7 @@ import Cocoa
 class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyInterceptorDelegate, CMPopupMenuDelegate, CMClipsMenuDelegate {
     // NSVariableStatusItemLength
     private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
+    private var hotkeyInterceptor: CMHotkeyInterceptor?
     let pasteboard = CMPasteboard()
     var clipsMenu: CMClipsMenu?
     
@@ -34,13 +35,13 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     
     func initializeClipinio() {
         setupStatusBarItemMenu()
-        CMHotkeyInterceptor(delegate: self)
+        hotkeyInterceptor = CMHotkeyInterceptor(delegate: self)
         clipsMenu = CMClipsMenu(delegate: self)
     }
     
     func setupStatusBarItemMenu() {
         let icon = NSImage(named: "statusIcon")!
-        icon.setTemplate(true)
+        icon.template = true
         statusItem.image = icon
         statusItem.menu = __statusMenu
     }
@@ -50,7 +51,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     }
     
     private func setupVersionItem() {
-        var version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         __versionMenuItem.title = "Version: " + version
     }
     
@@ -62,7 +63,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     
     // MARK: - CMHotkeyInterceptorDelegate
     func showPasteMenu(event: NSEvent) {
-        var menu = CMPopupMenu(delegate: self, clips: pasteboard.clips)
+        let menu = CMPopupMenu(delegate: self, clips: pasteboard.clips)
         menu.showPopupMenu(event)
     }
     

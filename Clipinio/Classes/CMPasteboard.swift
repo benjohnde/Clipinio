@@ -11,11 +11,12 @@ import Cocoa
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     private let CMPasteboardSize = 10
     private let pasteboard = NSPasteboard.generalPasteboard()
+    private var observer: CMPasteboardObserver?
     var clips = [CMClip]()
     
     override init() {
         super.init()
-        CMPasteboardObserver(delegate: self)
+        observer = CMPasteboardObserver(delegate: self)
     }
     
     private func top() -> CMClip? {
@@ -32,7 +33,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     private func addClip(clip: CMClip) -> Bool {
-        if !contains(clips, {$0.content == clip.content}) {
+        if !clips.contains({$0.content == clip.content}) {
             if clips.count + 1 > CMPasteboardSize {
                 clips.removeLast()
             }
@@ -44,7 +45,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     private func indexOf(clip: CMClip) -> Int? {
-        for (index, c) in enumerate(clips) {
+        for (index, c) in clips.enumerate() {
             if c.content == clip.content {
                 return index
             }
@@ -53,7 +54,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     private func moveToTop(clip: CMClip) {
-        var index = indexOf(clip)!
+        let index = indexOf(clip)!
         clips.removeAtIndex(index)
         clips.insert(clip, atIndex: 0)
     }
