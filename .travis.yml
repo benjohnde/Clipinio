@@ -1,5 +1,0 @@
-language: objective-c
-osx_image: xcode63
-install: git submodule update -i --recursive
-script:
-- xctool -project Clipinio.xcodeproj -scheme Clipinio -sdk macosx ONLY_ACTIVE_ARCH=NO clean build test
