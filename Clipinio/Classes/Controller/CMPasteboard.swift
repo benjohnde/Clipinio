@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Carbon
 
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     private let CMPasteboardSize = 10
@@ -65,11 +66,20 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     func invokePasteCommand() {
-        let key = NSAppleScript(source: "tell application \"System Events\" to keystroke \"v\" using {command down}")
-        key?.executeAndReturnError(nil)
+        let src = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState)
+        let loc = CGEventTapLocation.CGHIDEventTap
+        let postd = CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), true)
+        let postu = CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), false)
+        
+        CGEventSetFlags(postd, CGEventFlags.MaskCommand);
+        CGEventSetFlags(postu, CGEventFlags.MaskCommand);
+        
+        CGEventPost(loc, postd);
+        CGEventPost(loc, postu);
     }
     
     // MARK: - CMPasteboardObserverDelegate
+    
     func updatePasteboard() {
         if let top = top() {
             addClip(top)
