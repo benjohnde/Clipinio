@@ -16,9 +16,8 @@ class CMClip: NSObject {
         get {
             if self.content.characters.count > CMPreviewLength {
                 return NSString(string: self.content).substringToIndex(CMPreviewLength) as String
-            } else {
-                return self.content
             }
+            return self.content
         }
     }
     

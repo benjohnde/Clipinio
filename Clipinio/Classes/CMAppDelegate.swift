@@ -10,8 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyInterceptorDelegate, CMPopupMenuDelegate, CMClipsMenuDelegate {
-    // NSVariableStatusItemLength
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
+    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
     private var hotkeyInterceptor: CMHotkeyInterceptor?
     let pasteboard = CMPasteboard()
     var clipsMenu: CMClipsMenu?
@@ -21,16 +20,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     @IBOutlet weak var __versionMenuItem: NSMenuItem!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        acquirePrivileges()
         initializeClipinio()
-    }
-    
-    func acquirePrivileges() {
-        let flag = kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString
-        let options: CFDictionary = [flag: true]
-        if (AXIsProcessTrustedWithOptions(options) == 0) {
-            NSApplication.sharedApplication().terminate(nil)
-        }
     }
     
     func initializeClipinio() {
@@ -56,18 +46,21 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     }
     
     // MARK: - NSMenuDelegate
+    
     func menuWillOpen(menu: NSMenu) {
         setupVersionItem()
         clipsMenu!.fill()
     }
     
     // MARK: - CMHotkeyInterceptorDelegate
-    func showPasteMenu(event: NSEvent) {
+    
+    func showPasteMenu() {
         let menu = CMPopupMenu(delegate: self, clips: pasteboard.clips)
-        menu.showPopupMenu(event)
+        menu.showPopupMenu()
     }
     
     // MARK: - CMPopupMenuDelegate
+    
     func menuItemSelected(index: Int) {
         pasteboard.prepareClipForPaste(index)
         pasteboard.invokePasteCommand()

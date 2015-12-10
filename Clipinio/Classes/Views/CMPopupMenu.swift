@@ -30,8 +30,8 @@ class CMPopupMenu: NSObject {
         item?.target = self
     }
     
-    func showPopupMenu(event: NSEvent) {
-        menu.popUpMenuPositioningItem(nil, atLocation: event.locationInWindow, inView: nil)
+    func showPopupMenu() {
+        menu.popUpMenuPositioningItem(nil, atLocation: NSEvent.mouseLocation(), inView: nil)
     }
     
     func clickOnMenuItem(item: NSMenuItem) {
