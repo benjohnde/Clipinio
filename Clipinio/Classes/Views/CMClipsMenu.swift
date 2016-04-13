@@ -23,9 +23,9 @@ class CMClipsMenu: NSObject {
     
     func fill() {
         clear()
-        for (index, clip) in delegate.pasteboard.clips.enumerate() {
-            let title = String(index) + ". " + clip.preview
-            delegate.__clipsMenu!.insertItemWithTitle(title, action: nil, keyEquivalent: "", atIndex: index + 2)
+        delegate.pasteboard.clips.enumerate().forEach {
+            let title = String($0) + ". " + $1.preview
+            delegate.__clipsMenu!.insertItemWithTitle(title, action: nil, keyEquivalent: "", atIndex: $0 + 2)
         }
     }
     

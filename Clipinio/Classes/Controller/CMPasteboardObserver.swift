@@ -8,12 +8,16 @@
 
 import Cocoa
 
+private struct Action {
+    static let updatePasteboard = #selector(CMPasteboardObserver.updatePasteboard)
+}
+
 protocol CMPasteboardObserverDelegate {
     func updatePasteboard()
 }
 
 class CMPasteboardObserver: NSObject {
-    private let CMTimeInterval = NSTimeInterval(0.75)
+    private let CMTimeInterval = NSTimeInterval(0.65)
     private let delegate: CMPasteboardObserverDelegate
     
     init(delegate: CMPasteboardObserverDelegate) {
@@ -23,7 +27,7 @@ class CMPasteboardObserver: NSObject {
     }
     
     private func startObserving() {
-        NSTimer.scheduledTimerWithTimeInterval(CMTimeInterval, target: self, selector: Selector("updatePasteboard"), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(CMTimeInterval, target: self, selector: Action.updatePasteboard, userInfo: nil, repeats: true)
     }
     
     func updatePasteboard() {

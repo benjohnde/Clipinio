@@ -10,26 +10,33 @@ import Cocoa
 
 @NSApplicationMain
 class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyInterceptorDelegate, CMPopupMenuDelegate, CMClipsMenuDelegate {
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
-    private var hotkeyInterceptor: CMHotkeyInterceptor?
-    let pasteboard = CMPasteboard()
-    var clipsMenu: CMClipsMenu?
-    
     @IBOutlet weak var __statusMenu: NSMenu!
     @IBOutlet weak var __clipsMenu: NSMenu!
     @IBOutlet weak var __versionMenuItem: NSMenuItem!
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
-        initializeClipinio()
-    }
+    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    private var hotkeyInterceptor: CMHotkeyInterceptor?
     
-    func initializeClipinio() {
+    let pasteboard = CMPasteboard()
+    var clipsMenu: CMClipsMenu?
+    
+    func applicationDidFinishLaunching(aNotification: NSNotification) {
         setupStatusBarItemMenu()
+        setupVersionItem()
         hotkeyInterceptor = CMHotkeyInterceptor(delegate: self)
         clipsMenu = CMClipsMenu(delegate: self)
     }
     
-    func setupStatusBarItemMenu() {
+    // MARK: - NSMenu
+    
+    private func setupVersionItem() {
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        __versionMenuItem.title = "Version: \(version)"
+    }
+    
+    // MARK: - CMStatusIcon
+    
+    private func setupStatusBarItemMenu() {
         let icon = NSImage(named: "statusIcon")!
         icon.template = true
         statusItem.image = icon
@@ -40,15 +47,9 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
         pasteboard.clear()
     }
     
-    private func setupVersionItem() {
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        __versionMenuItem.title = "Version: " + version
-    }
-    
     // MARK: - NSMenuDelegate
     
     func menuWillOpen(menu: NSMenu) {
-        setupVersionItem()
         clipsMenu!.fill()
     }
     

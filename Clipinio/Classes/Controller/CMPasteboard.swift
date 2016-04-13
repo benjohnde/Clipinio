@@ -10,7 +10,7 @@ import Cocoa
 import Carbon
 
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
-    private let CMPasteboardSize = 10
+    private let CMPasteboardSize = 16
     private let pasteboard = NSPasteboard.generalPasteboard()
     private var observer: CMPasteboardObserver?
     var clips = [CMClip]()
@@ -34,7 +34,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     private func addClip(clip: CMClip) -> Bool {
-        if !clips.contains({$0.content == clip.content}) {
+        if !clips.contains({ $0.content == clip.content }) {
             if clips.count + 1 > CMPasteboardSize {
                 clips.removeLast()
             }
@@ -45,18 +45,10 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         return false
     }
     
-    private func indexOf(clip: CMClip) -> Int? {
-        for (index, c) in clips.enumerate() {
-            if c.content == clip.content {
-                return index
-            }
-        }
-        return nil
-    }
-    
     private func moveToTop(clip: CMClip) {
-        let index = indexOf(clip)!
-        clips.removeAtIndex(index)
+        let index = clips.indexOf({$0.content == clip.content})
+        guard (index != nil) else { return }
+        clips.removeAtIndex(index!)
         clips.insert(clip, atIndex: 0)
     }
     
@@ -67,15 +59,15 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     
     func invokePasteCommand() {
         let src = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState)
-        let loc = CGEventTapLocation.CGHIDEventTap
-        let postd = CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), true)
-        let postu = CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), false)
-        
-        CGEventSetFlags(postd, CGEventFlags.MaskCommand);
-        CGEventSetFlags(postu, CGEventFlags.MaskCommand);
-        
-        CGEventPost(loc, postd);
-        CGEventPost(loc, postu);
+        let location = CGEventTapLocation.CGHIDEventTap
+        let events = [
+            CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), true),
+            CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), false)
+        ]
+        events.forEach({
+            CGEventSetFlags($0, CGEventFlags.MaskCommand)
+            CGEventPost(location, $0)
+        })
     }
     
     // MARK: - CMPasteboardObserverDelegate

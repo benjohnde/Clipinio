@@ -6,16 +6,15 @@
 //  Copyright (c) 2015 Ben John. All rights reserved.
 //
 
-import Cocoa
-
-class CMClip: NSObject {
-    private let CMPreviewLength = 30
+class CMClip {
+    private let CMPreviewLength = 36
     
     var content = String()
     var preview: String {
         get {
             if self.content.characters.count > CMPreviewLength {
-                return NSString(string: self.content).substringToIndex(CMPreviewLength) as String
+                let index = self.content.startIndex.advancedBy(CMPreviewLength)
+                return self.content.substringToIndex(index)
             }
             return self.content
         }

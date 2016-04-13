@@ -8,6 +8,10 @@
 
 import Cocoa
 
+private struct Action {
+    static let clickOnMenuItem = #selector(CMPopupMenu.clickOnMenuItem(_:))
+}
+
 protocol CMPopupMenuDelegate {
     func menuItemSelected(index: Int)
 }
@@ -19,14 +23,12 @@ class CMPopupMenu: NSObject {
     init(delegate: CMPopupMenuDelegate, clips: [CMClip]) {
         self.delegate = delegate
         super.init()
-        for (index, clip) in clips.enumerate() {
-            addItemToMenu(index, clip: clip)
-        }
+        clips.enumerate().forEach { addItemToMenu($0, clip: $1) }
     }
     
     private func addItemToMenu(position: Int, clip: CMClip) {
         let title = String(position) + ". " + clip.preview
-        let item = menu.insertItemWithTitle(title, action: Selector("clickOnMenuItem:"), keyEquivalent: String(position), atIndex: position)
+        let item = menu.insertItemWithTitle(title, action: Action.clickOnMenuItem, keyEquivalent: String(position), atIndex: position)
         item?.target = self
     }
     
