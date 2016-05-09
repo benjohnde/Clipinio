@@ -8,7 +8,7 @@
 
 import Cocoa
 
-private struct Action {
+private extension Selector {
     static let updatePasteboard = #selector(CMPasteboardObserver.updatePasteboard)
 }
 
@@ -27,7 +27,7 @@ class CMPasteboardObserver: NSObject {
     }
     
     private func startObserving() {
-        NSTimer.scheduledTimerWithTimeInterval(CMTimeInterval, target: self, selector: Action.updatePasteboard, userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(CMTimeInterval, target: self, selector: .updatePasteboard, userInfo: nil, repeats: true)
     }
     
     func updatePasteboard() {

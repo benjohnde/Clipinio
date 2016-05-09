@@ -8,7 +8,7 @@
 
 import Cocoa
 
-private struct Action {
+private extension Selector {
     static let clickOnMenuItem = #selector(CMPopupMenu.clickOnMenuItem(_:))
 }
 
@@ -28,7 +28,7 @@ class CMPopupMenu: NSObject {
     
     private func addItemToMenu(position: Int, clip: CMClip) {
         let title = String(position) + ". " + clip.preview
-        let item = menu.insertItemWithTitle(title, action: Action.clickOnMenuItem, keyEquivalent: String(position), atIndex: position)
+        let item = menu.insertItemWithTitle(title, action: .clickOnMenuItem, keyEquivalent: String(position), atIndex: position)
         item?.target = self
     }
     
