@@ -23,15 +23,15 @@ class CMClipsMenu: NSObject {
     
     func fill() {
         clear()
-        delegate.pasteboard.clips.enumerate().forEach {
+        delegate.pasteboard.clips.enumerated().forEach {
             let title = String($0) + ". " + $1.preview
-            delegate.__clipsMenu!.insertItemWithTitle(title, action: nil, keyEquivalent: "", atIndex: $0 + 2)
+            delegate.__clipsMenu!.insertItem(withTitle: title, action: nil, keyEquivalent: "", at: $0 + 2)
         }
     }
     
     private func clear() {
-        while delegate.__clipsMenu!.itemArray.count > 2 {
-            delegate.__clipsMenu!.removeItemAtIndex(delegate.__clipsMenu!.itemArray.count - 1)
+        while delegate.__clipsMenu!.items.count > 2 {
+            delegate.__clipsMenu!.removeItem(at: delegate.__clipsMenu!.items.count - 1)
         }
     }
 }
