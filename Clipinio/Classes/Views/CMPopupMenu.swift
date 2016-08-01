@@ -13,7 +13,7 @@ private extension Selector {
 }
 
 protocol CMPopupMenuDelegate {
-    func menuItemSelected(index: Int)
+    func menuItemSelected(_ index: Int)
 }
 
 class CMPopupMenu: NSObject {
@@ -23,21 +23,21 @@ class CMPopupMenu: NSObject {
     init(delegate: CMPopupMenuDelegate, clips: [CMClip]) {
         self.delegate = delegate
         super.init()
-        clips.enumerate().forEach { addItemToMenu($0, clip: $1) }
+        clips.enumerated().forEach { addItemToMenu($0, clip: $1) }
     }
     
-    private func addItemToMenu(position: Int, clip: CMClip) {
+    private func addItemToMenu(_ position: Int, clip: CMClip) {
         let title = String(position) + ". " + clip.preview
-        let item = menu.insertItemWithTitle(title, action: .clickOnMenuItem, keyEquivalent: String(position), atIndex: position)
-        item?.target = self
+        let item = menu.insertItem(withTitle: title, action: .clickOnMenuItem, keyEquivalent: String(position), at: position)
+        item.target = self
     }
     
     func showPopupMenu() {
-        menu.popUpMenuPositioningItem(nil, atLocation: NSEvent.mouseLocation(), inView: nil)
+        menu.popUp(positioning: nil, at: NSEvent.mouseLocation(), in: nil)
     }
     
-    func clickOnMenuItem(item: NSMenuItem) {
-        let pos = menu.indexOfItem(item)
+    func clickOnMenuItem(_ item: NSMenuItem) {
+        let pos = menu.index(of: item)
         delegate.menuItemSelected(pos)
     }
 }

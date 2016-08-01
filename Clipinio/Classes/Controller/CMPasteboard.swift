@@ -11,7 +11,7 @@ import Carbon
 
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     private let CMPasteboardSize = 16
-    private let pasteboard = NSPasteboard.generalPasteboard()
+    private let pasteboard = NSPasteboard.general()
     private var observer: CMPasteboardObserver?
     var clips = [CMClip]()
     
@@ -21,7 +21,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     private func top() -> CMClip? {
-        if let string = pasteboard.stringForType(NSPasteboardTypeString) {
+        if let string = pasteboard.string(forType: NSPasteboardTypeString) {
             return CMClip(content: string)
         }
         return nil
@@ -33,40 +33,38 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         }
     }
     
-    private func addClip(clip: CMClip) -> Bool {
+    private func addClip(_ clip: CMClip) {
         if !clips.contains({ $0.content == clip.content }) {
             if clips.count + 1 > CMPasteboardSize {
                 clips.removeLast()
             }
-            clips.insert(clip, atIndex: 0)
-            return true
+            clips.insert(clip, at: 0)
         }
         moveToTop(clip)
-        return false
     }
     
-    private func moveToTop(clip: CMClip) {
-        let index = clips.indexOf({$0.content == clip.content})
+    private func moveToTop(_ clip: CMClip) {
+        let index = clips.index(where: {$0.content == clip.content})
         guard (index != nil) else { return }
-        clips.removeAtIndex(index!)
-        clips.insert(clip, atIndex: 0)
+        clips.remove(at: index!)
+        clips.insert(clip, at: 0)
     }
     
-    func prepareClipForPaste(index: Int) {
+    func prepareClipForPaste(_ index: Int) {
         pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
         pasteboard.setString(clips[index].content, forType: NSPasteboardTypeString)
     }
     
     func invokePasteCommand() {
-        let src = CGEventSourceCreate(CGEventSourceStateID.HIDSystemState)
-        let location = CGEventTapLocation.CGHIDEventTap
+        let src = CGEventSource(stateID: CGEventSourceStateID.hidSystemState)
+        let location = CGEventTapLocation.cghidEventTap
         let events = [
-            CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), true),
-            CGEventCreateKeyboardEvent(src, CGKeyCode(kVK_ANSI_V), false)
+            CGEvent(keyboardEventSource: src, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true),
+            CGEvent(keyboardEventSource: src, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
         ]
         events.forEach({
-            CGEventSetFlags($0, CGEventFlags.MaskCommand)
-            CGEventPost(location, $0)
+            $0?.flags = CGEventFlags.maskCommand
+            $0?.post(tap: location)
         })
     }
     

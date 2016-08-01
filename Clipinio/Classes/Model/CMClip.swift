@@ -13,8 +13,8 @@ class CMClip {
     var preview: String {
         get {
             if self.content.characters.count > CMPreviewLength {
-                let index = self.content.startIndex.advancedBy(CMPreviewLength)
-                return self.content.substringToIndex(index)
+                let index = self.content.index(self.content.startIndex, offsetBy: CMPreviewLength)
+                return self.content.substring(to: index)
             }
             return self.content
         }

@@ -14,13 +14,13 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     @IBOutlet weak var __clipsMenu: NSMenu!
     @IBOutlet weak var __versionMenuItem: NSMenuItem!
     
-    private let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+    private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
     private var hotkeyInterceptor: CMHotkeyInterceptor?
     
     let pasteboard = CMPasteboard()
     var clipsMenu: CMClipsMenu?
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupStatusBarItemMenu()
         setupVersionItem()
         hotkeyInterceptor = CMHotkeyInterceptor(delegate: self)
@@ -30,7 +30,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     // MARK: - NSMenu
     
     private func setupVersionItem() {
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let version = Bundle.main.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         __versionMenuItem.title = "Version: \(version)"
     }
     
@@ -38,18 +38,18 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     
     private func setupStatusBarItemMenu() {
         let icon = NSImage(named: "statusIcon")!
-        icon.template = true
+        icon.isTemplate = true
         statusItem.image = icon
         statusItem.menu = __statusMenu
     }
     
-    @IBAction func __resetEntries(sender: AnyObject) {
+    @IBAction func __resetEntries(_ sender: AnyObject) {
         pasteboard.clear()
     }
     
     // MARK: - NSMenuDelegate
     
-    func menuWillOpen(menu: NSMenu) {
+    func menuWillOpen(_ menu: NSMenu) {
         clipsMenu!.fill()
     }
     
@@ -62,7 +62,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     
     // MARK: - CMPopupMenuDelegate
     
-    func menuItemSelected(index: Int) {
+    func menuItemSelected(_ index: Int) {
         pasteboard.prepareClipForPaste(index)
         pasteboard.invokePasteCommand()
     }
