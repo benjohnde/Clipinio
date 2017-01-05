@@ -4,7 +4,7 @@ Lightweight clipboard manager for OS X.
 
 ## Usage
 
-Press `CTRL` + `C` to copy, and `CTRL` + `SHIFT` + `V` to insert via Clipinio. The hotkeys are hardcoded. If demanded, I will add a menu for custimizing the keys.
+Press `CTRL` + `C` to copy, and `CTRL` + `SHIFT` + `V` to insert a clip via Clipinio. The hotkeys are hardcoded. If demanded, I will add a menu for customizing the keys.
 
 ### Additional information
 
