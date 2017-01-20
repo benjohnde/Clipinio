@@ -17,8 +17,8 @@ protocol CMPasteboardObserverDelegate {
 }
 
 class CMPasteboardObserver: NSObject {
-    private let CMTimeInterval = TimeInterval(0.65)
-    private let delegate: CMPasteboardObserverDelegate
+    fileprivate let CMTimeInterval = TimeInterval(0.65)
+    fileprivate let delegate: CMPasteboardObserverDelegate
     
     init(delegate: CMPasteboardObserverDelegate) {
         self.delegate = delegate
@@ -26,7 +26,7 @@ class CMPasteboardObserver: NSObject {
         startObserving()
     }
     
-    private func startObserving() {
+    fileprivate func startObserving() {
         Timer.scheduledTimer(timeInterval: CMTimeInterval, target: self, selector: .updatePasteboard, userInfo: nil, repeats: true)
     }
     

@@ -17,8 +17,8 @@ protocol CMPopupMenuDelegate {
 }
 
 class CMPopupMenu: NSObject {
-    private let delegate: CMPopupMenuDelegate
-    private let menu = NSMenu()
+    fileprivate let delegate: CMPopupMenuDelegate
+    fileprivate let menu = NSMenu()
     
     init(delegate: CMPopupMenuDelegate, clips: [CMClip]) {
         self.delegate = delegate
@@ -26,7 +26,7 @@ class CMPopupMenu: NSObject {
         clips.enumerated().forEach { addItemToMenu($0, clip: $1) }
     }
     
-    private func addItemToMenu(_ position: Int, clip: CMClip) {
+    fileprivate func addItemToMenu(_ position: Int, clip: CMClip) {
         let title = String(position) + ". " + clip.preview
         let item = menu.insertItem(withTitle: title, action: .clickOnMenuItem, keyEquivalent: String(position), at: position)
         item.target = self

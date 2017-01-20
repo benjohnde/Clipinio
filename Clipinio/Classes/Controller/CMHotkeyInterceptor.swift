@@ -14,8 +14,8 @@ protocol CMHotkeyInterceptorDelegate {
 }
 
 class CMHotkeyInterceptor: NSObject {
-    private let delegate: CMHotkeyInterceptorDelegate
-    private var hotKey: HotKey
+    fileprivate let delegate: CMHotkeyInterceptorDelegate
+    fileprivate var hotKey: HotKey
     
     init(delegate: CMHotkeyInterceptorDelegate) {
         self.delegate = delegate

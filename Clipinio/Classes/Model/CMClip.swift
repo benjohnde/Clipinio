@@ -7,7 +7,7 @@
 //
 
 class CMClip {
-    private let CMPreviewLength = 36
+    fileprivate let CMPreviewLength = 36
     
     var content = String()
     var preview: String {

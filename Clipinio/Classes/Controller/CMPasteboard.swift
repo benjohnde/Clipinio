@@ -10,9 +10,9 @@ import Cocoa
 import Carbon
 
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
-    private let CMPasteboardSize = 16
-    private let pasteboard = NSPasteboard.general()
-    private var observer: CMPasteboardObserver?
+    fileprivate let CMPasteboardSize = 16
+    fileprivate let pasteboard = NSPasteboard.general()
+    fileprivate var observer: CMPasteboardObserver?
     var clips = [CMClip]()
     
     override init() {
@@ -20,7 +20,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         observer = CMPasteboardObserver(delegate: self)
     }
     
-    private func top() -> CMClip? {
+    fileprivate func top() -> CMClip? {
         if let string = pasteboard.string(forType: NSPasteboardTypeString) {
             return CMClip(content: string)
         }
@@ -33,8 +33,8 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         }
     }
     
-    private func addClip(_ clip: CMClip) {
-        if !clips.contains({ $0.content == clip.content }) {
+    fileprivate func addClip(_ clip: CMClip) {
+        if !clips.contains(where: { $0.content == clip.content }) {
             if clips.count + 1 > CMPasteboardSize {
                 clips.removeLast()
             }
@@ -43,7 +43,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         moveToTop(clip)
     }
     
-    private func moveToTop(_ clip: CMClip) {
+    fileprivate func moveToTop(_ clip: CMClip) {
         let index = clips.index(where: {$0.content == clip.content})
         guard (index != nil) else { return }
         clips.remove(at: index!)

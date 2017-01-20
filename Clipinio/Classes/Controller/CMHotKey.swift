@@ -10,19 +10,20 @@ import Cocoa
 import Carbon
 
 class HotKey {
-    private var hotKey: EventHotKeyRef? = nil
-    private var eventHandler: EventHandlerRef? = nil
+    fileprivate var hotKey: EventHotKeyRef? = nil
+    fileprivate var eventHandler: EventHandlerRef? = nil
 
-    init(keyCode: Int, modifiers: Int, block: () -> ()) {
+    init(keyCode: Int, modifiers: Int, block: @escaping () -> ()) {
         let hotKeyID = EventHotKeyID(signature: 1, id: 1)
         var eventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
+        
+        let ptr = UnsafeMutablePointer<Any>.allocate(capacity: 1)
+        ptr.initialize(to: block)
 
-        let ptr = UnsafeMutablePointer<() -> ()>(allocatingCapacity: 1)
-        ptr.initialize(with: block)
-
-        let eventHandlerUPP: EventHandlerUPP = {(_: OpaquePointer?, _: OpaquePointer?, ptr: UnsafeMutablePointer<()>?) -> OSStatus in
+        let eventHandlerUPP: EventHandlerUPP = {(_: OpaquePointer?, _: OpaquePointer?, ptr: UnsafeMutableRawPointer?) -> OSStatus in
             guard let pointer = ptr else { fatalError() }
-            UnsafeMutablePointer<() -> ()>(pointer).pointee()
+            // EventHandlerProcPtr
+            UnsafeMutablePointer<() -> ()>(OpaquePointer(pointer)).pointee()
             return noErr
         }
 

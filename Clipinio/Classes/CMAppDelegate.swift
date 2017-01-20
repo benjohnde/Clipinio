@@ -14,8 +14,8 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     @IBOutlet weak var __clipsMenu: NSMenu!
     @IBOutlet weak var __versionMenuItem: NSMenuItem!
     
-    private let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-    private var hotkeyInterceptor: CMHotkeyInterceptor?
+    fileprivate let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    fileprivate var hotkeyInterceptor: CMHotkeyInterceptor?
     
     let pasteboard = CMPasteboard()
     var clipsMenu: CMClipsMenu?
@@ -29,14 +29,14 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     
     // MARK: - NSMenu
     
-    private func setupVersionItem() {
-        let version = Bundle.main.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+    fileprivate func setupVersionItem() {
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         __versionMenuItem.title = "Version: \(version)"
     }
     
     // MARK: - CMStatusIcon
     
-    private func setupStatusBarItemMenu() {
+    fileprivate func setupStatusBarItemMenu() {
         let icon = NSImage(named: "statusIcon")!
         icon.isTemplate = true
         statusItem.image = icon

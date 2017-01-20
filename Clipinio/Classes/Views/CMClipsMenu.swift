@@ -14,7 +14,7 @@ protocol CMClipsMenuDelegate {
 }
 
 class CMClipsMenu: NSObject {
-    private let delegate: CMClipsMenuDelegate
+    fileprivate let delegate: CMClipsMenuDelegate
     
     init(delegate: CMClipsMenuDelegate) {
         self.delegate = delegate
@@ -29,7 +29,7 @@ class CMClipsMenu: NSObject {
         }
     }
     
-    private func clear() {
+    fileprivate func clear() {
         while delegate.__clipsMenu!.items.count > 2 {
             delegate.__clipsMenu!.removeItem(at: delegate.__clipsMenu!.items.count - 1)
         }
