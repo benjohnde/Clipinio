@@ -12,7 +12,7 @@ Press `CTRL` + `C` to copy, and `CTRL` + `SHIFT` + `V` to insert a clip via Clip
 sh build.sh
 ```
 
-Afterwards, Clipinio can be found in the `./build` directory. Enjoy!
+It automatically copies Clipinio to `/Applications/Clipinio.app`. Enjoy!
 
 ### Additional information
 
@@ -24,5 +24,4 @@ Afterwards, Clipinio can be found in the `./build` directory. Enjoy!
 
 ## TODO
 
-- [ ] Provide script for building the application, automatically.
 - [ ] Add the possibility of customizing max entries and hotkeys.
