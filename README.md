@@ -13,3 +13,8 @@ Press `CTRL` + `C` to copy, and `CTRL` + `SHIFT` + `V` to insert a clip via Clip
 #### Update
 
 > Now I use the old Carbon API, thus being able to consume the events. It is also much faster now and feels more like the old ClipMenu.
+
+## TODO
+
+- [ ] Provide script for building the application, automatically.
+- [ ] Add the possibility of customizing max entries and hotkeys.
