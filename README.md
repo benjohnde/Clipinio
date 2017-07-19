@@ -25,3 +25,4 @@ It automatically copies Clipinio to `/Applications/Clipinio.app`. Enjoy!
 ## TODO
 
 - [ ] Add the possibility of customizing max entries and hotkeys.
+- [ ] Add persistency (e.g. restore entries after reboot).
