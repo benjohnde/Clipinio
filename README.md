@@ -2,6 +2,14 @@
 
 Lightweight clipboard manager for OS X.
 
+## TODO
+
+- [ ] Add the possibility of customizing max entries and hotkeys.
+- [ ] Add persistency (e.g. restore entries after reboot).
+- [ ] Create app store icon
+- [ ] Test feasibility pasteboard observer / hotkey interceptor in sandbox mode
+- [ ] Submit to mac app store
+
 ## Usage
 
 Press `CMD` + `C` to copy, and `CMD` + `SHIFT` + `V` to insert a clip via Clipinio. The hotkeys are hardcoded. If demanded, I will add a menu for customizing the keys.
@@ -21,8 +29,3 @@ It automatically copies Clipinio to `/Applications/Clipinio.app`. Enjoy!
 #### Update
 
 > Now I use the old Carbon API, thus being able to consume the events. It is also much faster now and feels more like the old ClipMenu.
-
-## TODO
-
-- [ ] Add the possibility of customizing max entries and hotkeys.
-- [ ] Add persistency (e.g. restore entries after reboot).
