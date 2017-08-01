@@ -7,7 +7,7 @@ Lightweight clipboard manager for OS X.
 - [ ] Add the possibility of customizing max entries and hotkeys.
 - [ ] Add persistency (e.g. restore entries after reboot).
 - [ ] Create app store icon
-- [ ] Test feasibility pasteboard observer / hotkey interceptor in sandbox mode
+- [ ] Test feasibility pasteboard observer / hotkey interceptor in sandbox mode
 - [ ] Submit to mac app store
 
 ## Usage
