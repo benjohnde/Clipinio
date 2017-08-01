@@ -23,7 +23,7 @@ class CMPopupMenu: NSObject {
     init(delegate: CMPopupMenuDelegate, clips: [CMClip]) {
         self.delegate = delegate
         super.init()
-        clips.enumerated().forEach { addItemToMenu($0, clip: $1) }
+        clips.enumerated().forEach { addItemToMenu($0.0, clip: $0.1) }
     }
     
     fileprivate func addItemToMenu(_ position: Int, clip: CMClip) {
@@ -33,10 +33,10 @@ class CMPopupMenu: NSObject {
     }
     
     func showPopupMenu() {
-        menu.popUp(positioning: nil, at: NSEvent.mouseLocation(), in: nil)
+        menu.popUp(positioning: nil, at: NSEvent.mouseLocation, in: nil)
     }
     
-    func clickOnMenuItem(_ item: NSMenuItem) {
+    @objc func clickOnMenuItem(_ item: NSMenuItem) {
         let pos = menu.index(of: item)
         delegate.menuItemSelected(pos)
     }

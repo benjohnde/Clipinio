@@ -30,7 +30,7 @@ class CMPasteboardObserver: NSObject {
         Timer.scheduledTimer(timeInterval: CMTimeInterval, target: self, selector: .updatePasteboard, userInfo: nil, repeats: true)
     }
     
-    func updatePasteboard() {
+    @objc func updatePasteboard() {
         delegate.updatePasteboard()
     }
 }
