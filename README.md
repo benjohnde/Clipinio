@@ -1,8 +1,8 @@
+<img align="right" src="Sketch/Clipinio.png">
+
 # Clipinio
 
 Lightweight clipboard manager for OS X.
-
-<img align="right" src="Sketch/Clipinio.png">
 
 ## TODO
 
