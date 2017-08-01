@@ -2,6 +2,8 @@
 
 Lightweight clipboard manager for OS X.
 
+<img align="right" src="Sketch/Clipinio.png">
+
 ## TODO
 
 - [ ] Add the possibility of customizing max entries and hotkeys.
