@@ -35,11 +35,12 @@
 		4B4FB83A1AFC45D30094AADD /* CMClipsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMClipsMenu.swift; sourceTree = "<group>"; };
 		4B6181351AFBF0AE00F43233 /* CMClip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMClip.swift; sourceTree = "<group>"; };
 		4B9387431AF95B6000489506 /* Clipinio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clipinio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B9387471AF95B6000489506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B93874C1AF95B6000489506 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4B9387551AF95B6000489506 /* ClipinioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClipinioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B93875A1AF95B6000489506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B93875B1AF95B6000489506 /* ClipinioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipinioTests.swift; sourceTree = "<group>"; };
+		4BA3772F1F308A440065EB86 /* Clipinio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Clipinio.entitlements; sourceTree = "<group>"; };
+		4BA377301F308A440065EB86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BF9E8521AFA44410070931F /* CMAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMAppDelegate.swift; sourceTree = "<group>"; };
 		4BF9E85E1AFA446C0070931F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4BFAE3381C19F297006311FE /* CMHotkeyInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMHotkeyInterceptor.swift; sourceTree = "<group>"; };
@@ -97,17 +98,9 @@
 			children = (
 				4BF9E8511AFA44360070931F /* Classes */,
 				4B93874C1AF95B6000489506 /* Images.xcassets */,
-				4B9387461AF95B6000489506 /* Supporting Files */,
+				4BA3772E1F308A440065EB86 /* Supporting Files */,
 			);
 			path = Clipinio;
-			sourceTree = "<group>";
-		};
-		4B9387461AF95B6000489506 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4B9387471AF95B6000489506 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4B9387581AF95B6000489506 /* ClipinioTests */ = {
@@ -125,6 +118,15 @@
 				4B93875A1AF95B6000489506 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4BA3772E1F308A440065EB86 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BA3772F1F308A440065EB86 /* Clipinio.entitlements */,
+				4BA377301F308A440065EB86 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		4BF9E8511AFA44360070931F /* Classes */ = {
@@ -209,7 +211,14 @@
 				TargetAttributes = {
 					4B9387421AF95B6000489506 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 62VGCH9X4F;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					4B9387541AF95B6000489506 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -394,11 +403,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Clipinio/Supporting Files/Clipinio.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Clipinio/Info.plist;
+				DEVELOPMENT_TEAM = 62VGCH9X4F;
+				INFOPLIST_FILE = "Clipinio/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.benjohn.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
@@ -408,11 +423,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Clipinio/Supporting Files/Clipinio.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Clipinio/Info.plist;
+				DEVELOPMENT_TEAM = 62VGCH9X4F;
+				INFOPLIST_FILE = "Clipinio/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.benjohn.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
