@@ -17,25 +17,30 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     fileprivate let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     fileprivate var hotkeyInterceptor: CMHotkeyInterceptor?
     
+    let persistence = CMPersistence()
     let pasteboard = CMPasteboard()
     var clipsMenu: CMClipsMenu?
     
+    // MARK: - Application lifecycle
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupStatusBarItemMenu()
         setupVersionItem()
+        pasteboard.clips = persistence.clips
         hotkeyInterceptor = CMHotkeyInterceptor(delegate: self)
         clipsMenu = CMClipsMenu(delegate: self)
     }
     
-    // MARK: - NSMenu
+    func applicationWillTerminate(_ notification: Notification) {
+        persistence.clips = pasteboard.clips
+    }
     
+    // MARK: - NSMenu
     fileprivate func setupVersionItem() {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         __versionMenuItem.title = "Version: \(version)"
     }
     
     // MARK: - CMStatusIcon
-    
     fileprivate func setupStatusBarItemMenu() {
         let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))!
         icon.isTemplate = true
@@ -48,20 +53,17 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     }
     
     // MARK: - NSMenuDelegate
-    
     func menuWillOpen(_ menu: NSMenu) {
         clipsMenu!.fill()
     }
     
     // MARK: - CMHotkeyInterceptorDelegate
-    
     func showPasteMenu() {
         let menu = CMPopupMenu(delegate: self, clips: pasteboard.clips)
         menu.showPopupMenu()
     }
     
     // MARK: - CMPopupMenuDelegate
-    
     func menuItemSelected(_ index: Int) {
         pasteboard.prepareClipForPaste(index)
         pasteboard.invokePasteCommand()

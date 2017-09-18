@@ -6,15 +6,16 @@
 //  Copyright (c) 2015 Ben John. All rights reserved.
 //
 
-class CMClip {
-    fileprivate let CMPreviewLength = 36
-    
-    var content = String()
+import Foundation
+
+fileprivate let CMPreviewLength = 36
+
+struct CMClip: Decodable, Encodable {
+    let content: String
+}
+
+extension CMClip {
     var preview: String {
         return String(self.content.prefix(CMPreviewLength))
-    }
-    
-    init(content: String) {
-        self.content = content
     }
 }
