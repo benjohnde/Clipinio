@@ -11,7 +11,7 @@ import Carbon
 
 class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     fileprivate let CMPasteboardSize = 16
-    fileprivate let pasteboard = NSPasteboard.general()
+    fileprivate let pasteboard = NSPasteboard.general
     fileprivate var observer: CMPasteboardObserver?
     var clips = [CMClip]()
     
@@ -21,7 +21,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     fileprivate func top() -> CMClip? {
-        if let string = pasteboard.string(forType: NSPasteboardTypeString) {
+        if let string = pasteboard.string(forType: NSPasteboard.PasteboardType.string) {
             return CMClip(content: string)
         }
         return nil
@@ -51,8 +51,8 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     func prepareClipForPaste(_ index: Int) {
-        pasteboard.declareTypes([NSPasteboardTypeString], owner: nil)
-        pasteboard.setString(clips[index].content, forType: NSPasteboardTypeString)
+        pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+        pasteboard.setString(clips[index].content, forType: NSPasteboard.PasteboardType.string)
     }
     
     func invokePasteCommand() {
