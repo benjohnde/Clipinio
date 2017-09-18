@@ -130,7 +130,7 @@
 		4BF9E8511AFA44360070931F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4BFAE3371C19F297006311FE /* Controller */,
+				4BFAE3371C19F297006311FE /* Application */,
 				4B6181341AFBEA1D00F43233 /* Model */,
 				4BF9E85C1AFA44640070931F /* Views */,
 				4BF9E8521AFA44410070931F /* CMAppDelegate.swift */,
@@ -148,7 +148,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		4BFAE3371C19F297006311FE /* Controller */ = {
+		4BFAE3371C19F297006311FE /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				4BFAE33E1C19F2BE006311FE /* CMHotKey.swift */,
@@ -156,7 +156,7 @@
 				4BFAE3391C19F297006311FE /* CMPasteboard.swift */,
 				4BFAE33A1C19F297006311FE /* CMPasteboardObserver.swift */,
 			);
-			path = Controller;
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
