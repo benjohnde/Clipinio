@@ -26,6 +26,16 @@ class CMPersistence {
         return appDirectory.appendingPathComponent(CMLocalStorageFilename)
     }
     
+    init() {
+        ensureAppDirectoryExists()
+    }
+    
+    func ensureAppDirectoryExists() {
+        try? FileManager.default.createDirectory(at: appDirectory, withIntermediateDirectories: false)
+    }
+}
+
+extension CMPersistence {
     var localStorage: String? {
         set {
             try? newValue?.write(to: localStorageUrl, atomically: true, encoding: .utf8)
@@ -34,7 +44,9 @@ class CMPersistence {
             return try? String(contentsOf: localStorageUrl, encoding: .utf8)
         }
     }
-    
+}
+
+extension CMPersistence {
     var clips: [CMClip] {
         set {
             guard let result = try? JSONEncoder().encode(newValue) else {
@@ -57,13 +69,5 @@ class CMPersistence {
             }
             return clips
         }
-    }
-    
-    init() {
-        ensureAppDirectoryExists()
-    }
-    
-    func ensureAppDirectoryExists() {
-        try? FileManager.default.createDirectory(at: appDirectory, withIntermediateDirectories: false)
     }
 }
