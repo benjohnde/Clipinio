@@ -17,6 +17,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     fileprivate let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     fileprivate var hotkeyInterceptor: CMHotkeyInterceptor?
     
+    let persistence = CMPersistence()
     let pasteboard = CMPasteboard()
     var clipsMenu: CMClipsMenu?
     
@@ -24,12 +25,13 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupStatusBarItemMenu()
         setupVersionItem()
+        pasteboard.clips = persistence.clips
         hotkeyInterceptor = CMHotkeyInterceptor(delegate: self)
         clipsMenu = CMClipsMenu(delegate: self)
     }
     
     func applicationWillTerminate(_ notification: Notification) {
-        
+        persistence.clips = pasteboard.clips
     }
     
     // MARK: - NSMenu

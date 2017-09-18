@@ -12,6 +12,7 @@
 		4B6181361AFBF0AE00F43233 /* CMClip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6181351AFBF0AE00F43233 /* CMClip.swift */; };
 		4B93874D1AF95B6000489506 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B93874C1AF95B6000489506 /* Images.xcassets */; };
 		4B93875C1AF95B6000489506 /* ClipinioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B93875B1AF95B6000489506 /* ClipinioTests.swift */; };
+		4B971BC31F6FC6BA0057787F /* CMPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B971BC21F6FC6BA0057787F /* CMPersistence.swift */; };
 		4BF9E8551AFA44410070931F /* CMAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BF9E8521AFA44410070931F /* CMAppDelegate.swift */; };
 		4BF9E8601AFA446C0070931F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BF9E85E1AFA446C0070931F /* Main.storyboard */; };
 		4BFAE33B1C19F297006311FE /* CMHotkeyInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFAE3381C19F297006311FE /* CMHotkeyInterceptor.swift */; };
@@ -40,6 +41,7 @@
 		4B9387551AF95B6000489506 /* ClipinioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClipinioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B93875A1AF95B6000489506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B93875B1AF95B6000489506 /* ClipinioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipinioTests.swift; sourceTree = "<group>"; };
+		4B971BC21F6FC6BA0057787F /* CMPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMPersistence.swift; sourceTree = "<group>"; };
 		4BF9E8521AFA44410070931F /* CMAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMAppDelegate.swift; sourceTree = "<group>"; };
 		4BF9E85E1AFA446C0070931F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4BFAE3381C19F297006311FE /* CMHotkeyInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMHotkeyInterceptor.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				4BFAE3381C19F297006311FE /* CMHotkeyInterceptor.swift */,
 				4BFAE3391C19F297006311FE /* CMPasteboard.swift */,
 				4BFAE33A1C19F297006311FE /* CMPasteboardObserver.swift */,
+				4B971BC21F6FC6BA0057787F /* CMPersistence.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				4B4FB83B1AFC45D30094AADD /* CMClipsMenu.swift in Sources */,
 				4B24BE201AFBC3B400FA78D2 /* CMPopupMenu.swift in Sources */,
 				4BF9E8551AFA44410070931F /* CMAppDelegate.swift in Sources */,
+				4B971BC31F6FC6BA0057787F /* CMPersistence.swift in Sources */,
 				4B6181361AFBF0AE00F43233 /* CMClip.swift in Sources */,
 				4BFAE33F1C19F2BE006311FE /* CMHotKey.swift in Sources */,
 				4BFAE33D1C19F297006311FE /* CMPasteboardObserver.swift in Sources */,
