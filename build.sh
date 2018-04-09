@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 xcodebuild -scheme Clipinio -target Clipinio \
     -configuration Release \
