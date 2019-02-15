@@ -44,7 +44,7 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     fileprivate func moveToTop(_ clip: CMClip) {
-        let index = clips.index(where: {$0.content == clip.content})
+        let index = clips.firstIndex(where: {$0.content == clip.content})
         guard (index != nil) else { return }
         clips.remove(at: index!)
         clips.insert(clip, at: 0)

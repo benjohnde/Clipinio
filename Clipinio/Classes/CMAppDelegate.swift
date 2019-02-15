@@ -42,7 +42,7 @@ class CMAppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate, CMHotkeyIn
     
     // MARK: - CMStatusIcon
     fileprivate func setupStatusBarItemMenu() {
-        let icon = NSImage(named: NSImage.Name(rawValue: "statusIcon"))!
+        let icon = NSImage(named: "statusIcon")!
         icon.isTemplate = true
         statusItem.image = icon
         statusItem.menu = __statusMenu
