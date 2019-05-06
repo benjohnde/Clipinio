@@ -56,14 +56,14 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
     }
     
     func invokePasteCommand() {
-        let src = CGEventSource(stateID: CGEventSourceStateID.hidSystemState)
-        let location = CGEventTapLocation.cghidEventTap
+        let src = CGEventSource(stateID:.hidSystemState)
+        let location: CGEventTapLocation = .cghidEventTap
         let events = [
             CGEvent(keyboardEventSource: src, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true),
             CGEvent(keyboardEventSource: src, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
         ]
         events.forEach({
-            $0?.flags = CGEventFlags.maskCommand
+            $0?.flags = .maskCommand
             $0?.post(tap: location)
         })
     }
