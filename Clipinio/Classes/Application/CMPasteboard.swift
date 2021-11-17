@@ -55,16 +55,45 @@ class CMPasteboard: NSObject, CMPasteboardObserverDelegate {
         pasteboard.setString(clips[index].content, forType: NSPasteboard.PasteboardType.string)
     }
     
+    var isAccessibilityEnabled: Bool {
+        return AXIsProcessTrustedWithOptions(nil)
+    }
+    
+    func showAccessibilityAuthenticationAlert() {
+        let alert = NSAlert()
+        alert.messageText = "Please allow Accessibility"
+        alert.informativeText = "To do this action please allow Accessibility in Security Privacy preferences located in System Preferences"
+        alert.addButton(withTitle: "Open System Preferences")
+        NSApp.activate(ignoringOtherApps: true)
+
+        if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
+            openAccessibilitySettingWindow()
+        }
+    }
+
+    @discardableResult
+    func openAccessibilitySettingWindow() -> Bool {
+        guard let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility") else { return false }
+        return NSWorkspace.shared.open(url)
+    }
+    
     func invokePasteCommand() {
-        let src = CGEventSource(stateID:.hidSystemState)
-        let location: CGEventTapLocation = .cghidEventTap
+        guard isAccessibilityEnabled else {
+            showAccessibilityAuthenticationAlert()
+            return
+        }
+        let src = CGEventSource(stateID: .combinedSessionState)
+        src?.setLocalEventsFilterDuringSuppressionState([
+            .permitLocalMouseEvents,
+            .permitSystemDefinedEvents,
+        ], state: .eventSuppressionStateSuppressionInterval)
         let events = [
             CGEvent(keyboardEventSource: src, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: true),
             CGEvent(keyboardEventSource: src, virtualKey: CGKeyCode(kVK_ANSI_V), keyDown: false)
         ]
         events.forEach({
             $0?.flags = .maskCommand
-            $0?.post(tap: location)
+            $0?.post(tap: .cgAnnotatedSessionEventTap)
         })
     }
     
